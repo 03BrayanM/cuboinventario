@@ -111,7 +111,7 @@
             // 
             this.txt_descripcion.AccessibleName = "btn_volver";
             this.txt_descripcion.Location = new System.Drawing.Point(59, 264);
-            this.txt_descripcion.MaxLength = 1;
+            this.txt_descripcion.MaxLength = 30;
             this.txt_descripcion.Name = "txt_descripcion";
             this.txt_descripcion.Size = new System.Drawing.Size(138, 20);
             this.txt_descripcion.TabIndex = 19;

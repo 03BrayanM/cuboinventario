@@ -159,6 +159,63 @@ namespace canchacubo.clases
                 return false;
             }
         }
+        public bool Eliminarticulo(string identificador)
+        {
+            try
+            {
+                // Validación de datos antes de insertar
+                if (ValidarArticulo(identificador))
+                {
+                    using (OracleConnection connection = new OracleConnection(cadenaConexion))
+                    {
+                        OracleCommand command = new OracleCommand();
+                        command.Connection = connection;
+                        command.CommandText = "bdcanchascuboo.ELIMINAR_ARTICULO";
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.Add("p_identificador", OracleDbType.Decimal).Value = identificador;
+                        
+
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                    // Retorna true si la inserción fue exitosa
+                    return true;
+                }
+                else
+                {
+                    // Datos no válidos; retorna false
+                    return false;
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                // Manejo de excepción de validación
+                MessageBox.Show(ex.Message, "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            catch (OracleException ex)
+            {
+                // Manejo de errores específicos de Oracle
+                switch (ex.Number)
+                {
+                    case 20001:
+                        MessageBox.Show("Error: El articulo tiene cantidad en el stock y no puede ser eliminado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                  
+                    default:
+                        MessageBox.Show("Error : " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                // Manejo de cualquier otra excepción
+                MessageBox.Show("Error al Eliminar el articulo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
         public bool ValidarDatosArticulo(string cedula, string nombre, string telefono, string descripcion)
         {
             if (!Regex.IsMatch(cedula, @"^\d+$"))
@@ -182,6 +239,29 @@ namespace canchacubo.clases
             }
            
             // Si todas las validaciones son exitosas, retornamos true
+            return true;
+        }
+        private bool ValidarArticulo(string idCliente)
+        {
+            // Validamos que no contenga letras ni caracteres inválidos
+            if (Regex.IsMatch(idCliente, @"^[a-zA-Z]+$"))
+            {
+                MessageBox.Show("El identificador no puede contener letras. Debe ser un número válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (Regex.IsMatch(idCliente, @"^[a-zA-Z0-9]+$") && Regex.IsMatch(idCliente, @"[a-zA-Z]"))
+            {
+                MessageBox.Show("El identificador no puede contener letras y números. Debe ser solo números.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (!int.TryParse(idCliente, out _))
+            {
+                MessageBox.Show("El identificador debe ser un número válido. Inténtalo de nuevo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
             return true;
         }
     }

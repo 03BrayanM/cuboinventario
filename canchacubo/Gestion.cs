@@ -47,13 +47,15 @@ namespace canchacubo
 
         private void button3_Click(object sender, EventArgs e)
         {
-            InsertarArticulo Form_articulo = new InsertarArticulo();
-            Form_articulo.ArticuloRegistrado += RefrescarInventario;
-            Form_articulo.Show();
-        }
+            eliminararticulo moduloeliminar = new eliminararticulo();
+            moduloeliminar.ArticuloEliminado += RefrescarInventario;
+            moduloeliminar.Show();
+            
+            }
+
         public void RefrescarInventario(object sender, EventArgs e)
         {
-            RecargarDatosInventario();
+            CargarInventarioDataGreatView();
         }
 
         private void button2_Click(object sender, EventArgs e)
