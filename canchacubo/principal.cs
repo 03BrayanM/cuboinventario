@@ -29,23 +29,6 @@ namespace canchacubo
              this.Hide(); 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void btn_informe_Click(object sender, EventArgs e)
-        {
-            informes informe = new informes();
-            informe.Show();
-            this.Hide();
-        }
-
-        private void principal_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_reserva_Click(object sender, EventArgs e)
         {
             reservas reserva = new reservas();
@@ -58,6 +41,13 @@ namespace canchacubo
         {
             promociones promo = new promociones();
             promo.Show();
+            this.Hide();
+        }
+
+        private void btn_gestion_Click(object sender, EventArgs e)
+        {
+            Gestion gestiona = new Gestion();
+            gestiona.Show();
             this.Hide();
         }
     }

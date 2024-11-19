@@ -5,12 +5,13 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace canchacubo.clases
 {
     internal class clsManager
     {
-        string cadenaConexion = "Data Source = localhost; User ID = MY_USER;Password=USER654321";
+        string cadenaConexion = "Data Source = localhost; User ID = USUARIO;Password=USER654321";
 
         public decimal ObtenerCostoCancha(int numeroCancha)
         {
@@ -18,7 +19,7 @@ namespace canchacubo.clases
             {
                 conn.Open();
 
-                using (OracleCommand cmd = new OracleCommand("bdcanchascubo.OBTENER_COSTO_CANCHA", conn))
+                using (OracleCommand cmd = new OracleCommand("bdcanchascuboo.OBTENER_COSTO_CANCHA", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -44,10 +45,45 @@ namespace canchacubo.clases
             }
         }
 
+        public DataTable obtenerTablaInventario()
+        {
+            DataTable dtInventario = new DataTable();
 
+            // Imprime la cadena de conexión para verificar
+            Console.WriteLine("Cadena de conexión: " + cadenaConexion);
 
+            using (OracleConnection connection = new OracleConnection(cadenaConexion))
+            {
+                OracleCommand command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT * FROM vw_InventarioCompleto"; // Nombre completo de la vista
+                command.CommandType = CommandType.Text;
 
+                try
+                {
+                    connection.Open();
+                    Console.WriteLine("Conexión abierta.");
 
+                    // Imprime la consulta para verificar
+                    Console.WriteLine("Consulta: " + command.CommandText);
+
+                    using (OracleDataAdapter adapter = new OracleDataAdapter(command))
+                    {
+                        adapter.Fill(dtInventario);
+                    }
+                }
+                catch (OracleException ex)
+                {
+                    MessageBox.Show("Error de Oracle: " + ex.Message + "\nCódigo de error: " + ex.ErrorCode);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error general: " + ex.Message);
+                }
+            }
+
+            return dtInventario;
+        }
 
     }
 }

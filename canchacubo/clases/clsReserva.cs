@@ -9,7 +9,7 @@ namespace canchacubo.clases
 {
     internal class clsReserva
     {
-        string cadenaConexion = "Data Source = localhost; User ID = MY_USER;Password=USER654321";
+        string cadenaConexion = "Data Source = localhost; User ID = USUARIO;Password=USER654321";
         int estado = 1;
         public bool Registrar_Reserva(DateTime fecha, string horaSeleccionada, string id_cliente, int num_cancha, Decimal idpromo)
         {
@@ -22,7 +22,7 @@ namespace canchacubo.clases
                     {
                         OracleCommand command = new OracleCommand();
                         command.Connection = connection;
-                        command.CommandText = "bdcanchascubo.insertar_reserva";
+                        command.CommandText = "bdcanchascuboo.insertar_reserva";
                         command.CommandType = CommandType.StoredProcedure;
 
                         // Agregamos los parámetros requeridos por el procedimiento almacenado
@@ -105,7 +105,7 @@ namespace canchacubo.clases
                 {
                     OracleCommand command = new OracleCommand();
                     command.Connection = connection;
-                    command.CommandText = "bdcanchascubo.ELIMINAR_RESERVA"; // Nota: corregido el nombre del procedimiento
+                    command.CommandText = "bdcanchascuboo.ELIMINAR_RESERVA"; // Nota: corregido el nombre del procedimiento
                     command.CommandType = CommandType.StoredProcedure;
 
                     // Agregamos los parámetros requeridos por el procedimiento almacenado
@@ -214,7 +214,7 @@ namespace canchacubo.clases
             {
                 conn.Open();
 
-                using (OracleCommand cmd = new OracleCommand("bdcanchascubo.OBTENER_RESERVAS", conn))
+                using (OracleCommand cmd = new OracleCommand("bdcanchascuboo.OBTENER_RESERVAS", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("p_result", OracleDbType.RefCursor).Direction = ParameterDirection.Output;

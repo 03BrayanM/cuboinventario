@@ -13,7 +13,7 @@ namespace canchacubo.clases
 {
     public class clsCliente
     {
-        string cadenaConexion = "Data Source = localhost; User ID = MY_USER;Password=USER654321";
+        string cadenaConexion = "Data Source = localhost; User ID = USUARIO;Password=USER654321";
         public clsCliente()
         { }
 
@@ -28,7 +28,7 @@ namespace canchacubo.clases
                     {
                         OracleCommand command = new OracleCommand();
                         command.Connection = connection;
-                        command.CommandText = "bdcanchascubo.INSERTAR_CLIENTE";
+                        command.CommandText = "bdcanchascuboo.INSERTAR_CLIENTE";
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.Add("p_identificacion", OracleDbType.Decimal).Value = cedula;
@@ -158,7 +158,7 @@ namespace canchacubo.clases
                     {
                         OracleCommand command = new OracleCommand();
                         command.Connection = connection;
-                        command.CommandText = "bdcanchascubo.ACTUALIZAR_CLIENTE";
+                        command.CommandText = "bdcanchascuboo.ACTUALIZAR_CLIENTE";
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.Add("p_identificacion", OracleDbType.Decimal).Value = idCliente;
@@ -276,7 +276,7 @@ namespace canchacubo.clases
             {
                 OracleCommand command = new OracleCommand();
                 command.Connection = connection;
-                command.CommandText = "bdcanchascubo.OBTENER_CLIENTES";
+                command.CommandText = "bdcanchascuboo.OBTENER_CLIENTES";
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("p_cursor", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
                 try

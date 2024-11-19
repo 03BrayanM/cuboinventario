@@ -10,18 +10,11 @@ using System.Windows.Forms;
 
 namespace canchacubo
 {
-    public partial class ingresos : Form
+    public partial class login : Form
     {
-        public ingresos()
+        public login()
         {
             InitializeComponent();
-        }
-
-        private void btn_volver_Click(object sender, EventArgs e)
-        {
-            informes informe = new informes();
-            informe.Show();
-            this.Hide();
         }
     }
 }

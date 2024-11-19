@@ -1,6 +1,6 @@
 ﻿namespace canchacubo
 {
-    partial class ingresos
+    partial class login
     {
         /// <summary>
         /// Required designer variable.
@@ -29,40 +29,39 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.btn_volver = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(276, 26);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(342, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 25);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Ingresos";
+            this.label1.Size = new System.Drawing.Size(104, 31);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "LOGIN";
             // 
-            // btn_volver
+            // button1
             // 
-            this.btn_volver.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_volver.Location = new System.Drawing.Point(649, 358);
-            this.btn_volver.Name = "btn_volver";
-            this.btn_volver.Size = new System.Drawing.Size(94, 31);
-            this.btn_volver.TabIndex = 5;
-            this.btn_volver.Text = "VOLVER";
-            this.btn_volver.UseVisualStyleBackColor = true;
-            this.btn_volver.Click += new System.EventHandler(this.btn_volver_Click);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(344, 296);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(102, 36);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "ENTRAR";
+            this.button1.UseVisualStyleBackColor = true;
             // 
-            // ingresos
+            // login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::canchacubo.Properties.Resources.fondo;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btn_volver);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
-            this.Name = "ingresos";
-            this.Text = "ingresos";
+            this.Name = "login";
+            this.Text = "login";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -71,6 +70,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btn_volver;
+        private System.Windows.Forms.Button button1;
     }
 }

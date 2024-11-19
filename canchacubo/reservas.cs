@@ -107,7 +107,7 @@ namespace canchacubo
         {
             principal inicio = new principal();
             inicio.Show();
-            this.Hide();
+            this.Close();
         }
         private void btn_reservar_Click(object sender, EventArgs e)
         {
