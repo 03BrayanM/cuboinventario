@@ -62,12 +62,13 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(134, 335);
+            this.button2.Location = new System.Drawing.Point(148, 335);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(205, 36);
             this.button2.TabIndex = 4;
             this.button2.Text = "INSERTAR ARTICULO";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -78,13 +79,14 @@
             this.button3.TabIndex = 5;
             this.button3.Text = "ELIMINAR ARTICULO";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // dgvinventario
             // 
             this.dgvinventario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvinventario.Location = new System.Drawing.Point(117, 127);
+            this.dgvinventario.Location = new System.Drawing.Point(148, 127);
             this.dgvinventario.Name = "dgvinventario";
-            this.dgvinventario.Size = new System.Drawing.Size(542, 202);
+            this.dgvinventario.Size = new System.Drawing.Size(488, 202);
             this.dgvinventario.TabIndex = 6;
             // 
             // textBox1

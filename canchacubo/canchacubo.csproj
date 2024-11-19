@@ -156,6 +156,12 @@
     <Compile Include="Gestion.Designer.cs">
       <DependentUpon>Gestion.cs</DependentUpon>
     </Compile>
+    <Compile Include="InsertarArticulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsertarArticulo.Designer.cs">
+      <DependentUpon>InsertarArticulo.cs</DependentUpon>
+    </Compile>
     <Compile Include="login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,6 +220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gestion.resx">
       <DependentUpon>Gestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InsertarArticulo.resx">
+      <DependentUpon>InsertarArticulo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.cs</DependentUpon>

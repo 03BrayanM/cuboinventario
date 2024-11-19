@@ -44,5 +44,23 @@ namespace canchacubo
             RecargarDatosInventario();
             dgvinventario.DataSource = dtinventario; // Enlazar los datos al DataGridView
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            InsertarArticulo Form_articulo = new InsertarArticulo();
+            Form_articulo.ArticuloRegistrado += RefrescarInventario;
+            Form_articulo.Show();
+        }
+        public void RefrescarInventario(object sender, EventArgs e)
+        {
+            RecargarDatosInventario();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            InsertarArticulo Form_articulo = new InsertarArticulo();
+            Form_articulo.ArticuloRegistrado += RefrescarInventario;
+            Form_articulo.Show();
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -84,6 +85,104 @@ namespace canchacubo.clases
 
             return dtInventario;
         }
+        public bool Insertararticulo(string identificador, string nombre, string precio, string descripcion)
+        {
+            try
+            {
+                // Validación de datos antes de insertar
+                if (ValidarDatosArticulo(identificador, nombre, precio, descripcion))
+                {
+                    using (OracleConnection connection = new OracleConnection(cadenaConexion))
+                    {
+                        OracleCommand command = new OracleCommand();
+                        command.Connection = connection;
+                        command.CommandText = "bdcanchascuboo.INSERTAR_ARTICULO";
+                        command.CommandType = CommandType.StoredProcedure;
 
+                        command.Parameters.Add("p_identificador", OracleDbType.Decimal).Value = identificador;
+                        command.Parameters.Add("p_nombre", OracleDbType.Varchar2).Value = nombre;
+                        command.Parameters.Add("p_precio", OracleDbType.Decimal).Value = precio;
+                        command.Parameters.Add("p_descripcion", OracleDbType.Varchar2).Value = descripcion;
+
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                    // Retorna true si la inserción fue exitosa
+                    return true;
+                }
+                else
+                {
+                    // Datos no válidos; retorna false
+                    return false;
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                // Manejo de excepción de validación
+                MessageBox.Show(ex.Message, "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            catch (OracleException ex)
+            {
+                // Manejo de errores específicos de Oracle
+                switch (ex.Number)
+                {
+                    case 20001:
+                        MessageBox.Show("Error: El identificador debe ser un número positivo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    case 20002:
+                        MessageBox.Show("Error: El identificador solo debe contener números.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    case 20003:
+                        MessageBox.Show("Error: El precio  debe ser un número positivo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    case 20004:
+                        MessageBox.Show("Error: El Precio solo debe contener números.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    case 20005:
+                        MessageBox.Show("Error: El nombre solo debe contener letras.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                   
+                    case 20008:
+                        MessageBox.Show("Error: El ID ya está registrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    default:
+                        MessageBox.Show("Error al registrar el articulo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                // Manejo de cualquier otra excepción
+                MessageBox.Show("Error al registrar el articulo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+        public bool ValidarDatosArticulo(string cedula, string nombre, string telefono, string descripcion)
+        {
+            if (!Regex.IsMatch(cedula, @"^\d+$"))
+            {
+                // Lanzamos una excepción que será capturada en el método principal
+                throw new ArgumentException("el identificador  debe ser un número válido.");
+            }
+
+            if (!Regex.IsMatch(telefono, @"^\d+$"))
+            {
+                throw new ArgumentException("El precio debe ser un número válido.");
+            }
+
+            if (Regex.IsMatch(nombre, @"^\d+$"))
+            {
+                throw new ArgumentException("El nombre debe contener letras.");
+            }
+            if (Regex.IsMatch(descripcion, @"^\d+$"))
+            {
+                throw new ArgumentException("La descripcion debe contener letras.");
+            }
+           
+            // Si todas las validaciones son exitosas, retornamos true
+            return true;
+        }
     }
 }
