@@ -84,9 +84,9 @@
             // dgvinventario
             // 
             this.dgvinventario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvinventario.Location = new System.Drawing.Point(148, 127);
+            this.dgvinventario.Location = new System.Drawing.Point(112, 127);
             this.dgvinventario.Name = "dgvinventario";
-            this.dgvinventario.Size = new System.Drawing.Size(488, 202);
+            this.dgvinventario.Size = new System.Drawing.Size(587, 202);
             this.dgvinventario.TabIndex = 6;
             // 
             // textBox1

@@ -21,8 +21,11 @@ namespace canchacubo
 
         private void btn_volver_Click(object sender, EventArgs e)
         {
-           
             this.Close();
+            Gestion gestiona = new Gestion();
+            gestiona.Show();
+
+
         }
 
         private void btn_eliminar_Click(object sender, EventArgs e)
@@ -43,6 +46,9 @@ namespace canchacubo
                 MessageBox.Show("Articulo Eliminado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ArticuloEliminado?.Invoke(this, EventArgs.Empty); // Dispara el evento si no es null
                 this.Close();
+                Gestion gestiona = new Gestion();
+                gestiona.Show();
+
             }
         }
     }
