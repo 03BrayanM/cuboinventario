@@ -20,7 +20,7 @@ namespace canchacubo.clases
             {
                 conn.Open();
 
-                using (OracleCommand cmd = new OracleCommand("bdcanchascuboo.OBTENER_COSTO_CANCHA", conn))
+                using (OracleCommand cmd = new OracleCommand("gestioninventario.OBTENER_COSTO_CANCHA", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -96,7 +96,7 @@ namespace canchacubo.clases
                     {
                         OracleCommand command = new OracleCommand();
                         command.Connection = connection;
-                        command.CommandText = "bdcanchascuboo.INSERTAR_ARTICULO";
+                        command.CommandText = "gestioninventario.INSERTAR_ARTICULO";
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.Add("p_identificador", OracleDbType.Decimal).Value = identificador;
@@ -170,7 +170,7 @@ namespace canchacubo.clases
                     {
                         OracleCommand command = new OracleCommand();
                         command.Connection = connection;
-                        command.CommandText = "bdcanchascuboo.ELIMINAR_ARTICULO";
+                        command.CommandText = "gestioninventario.ELIMINAR_ARTICULO";
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.Add("p_identificador", OracleDbType.Decimal).Value = identificador;
@@ -263,6 +263,61 @@ namespace canchacubo.clases
             }
 
             return true;
+        }
+        public bool actualizarstock(int identificador, string típomovimiento, string cantidad)
+        {
+            try
+            {
+                // Validación de cantidad antes de insertar
+                if (!int.TryParse(cantidad, out _))
+                {
+                    MessageBox.Show("la cantidad debe ser un número válido. Inténtalo de nuevo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                using (OracleConnection connection = new OracleConnection(cadenaConexion))
+                    {
+                        OracleCommand command = new OracleCommand();
+                        command.Connection = connection;
+                        command.CommandText = "gestioninventario.InsertarMovimiento";
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.Add("p_identificador", OracleDbType.Decimal).Value = identificador;
+                        command.Parameters.Add("p_tipo", OracleDbType.Varchar2).Value = típomovimiento;
+                        command.Parameters.Add("p_cantidad", OracleDbType.Decimal).Value = cantidad;
+                        
+
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                    // Retorna true si la inserción fue exitosa
+                    return true;                
+            }
+            catch (ArgumentException ex)
+            {
+                // Manejo de excepción de validación
+                MessageBox.Show(ex.Message, "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            catch (OracleException ex)
+            {
+                // Manejo de errores específicos de Oracle
+                switch (ex.Number)
+                {
+                    case 20110:
+                        MessageBox.Show("Erro. el ID de movimiento ya está registrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;                  
+                    default:
+                        MessageBox.Show("Error al registrar el movimient: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                // Manejo de cualquier otra excepción
+                MessageBox.Show("Error al registrar el movimiento: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
     }
 }
