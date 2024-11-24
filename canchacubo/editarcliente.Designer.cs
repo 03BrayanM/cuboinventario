@@ -35,11 +35,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txt_estado = new System.Windows.Forms.TextBox();
             this.txt_telefono = new System.Windows.Forms.TextBox();
             this.txtt_nombre = new System.Windows.Forms.TextBox();
             this.btn_editar = new System.Windows.Forms.Button();
             this.cbxclientes = new System.Windows.Forms.ComboBox();
+            this.cbx_estado = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -114,14 +114,6 @@
             this.label2.TabIndex = 19;
             this.label2.Text = "Identificacion";
             // 
-            // txt_estado
-            // 
-            this.txt_estado.Location = new System.Drawing.Point(132, 276);
-            this.txt_estado.MaxLength = 1;
-            this.txt_estado.Name = "txt_estado";
-            this.txt_estado.Size = new System.Drawing.Size(138, 20);
-            this.txt_estado.TabIndex = 18;
-            // 
             // txt_telefono
             // 
             this.txt_telefono.Location = new System.Drawing.Point(132, 213);
@@ -159,12 +151,25 @@
             this.cbxclientes.TabIndex = 25;
             this.cbxclientes.SelectedIndexChanged += new System.EventHandler(this.cbxclientes_SelectedIndexChanged);
             // 
+            // cbx_estado
+            // 
+            this.cbx_estado.FormattingEnabled = true;
+            this.cbx_estado.Items.AddRange(new object[] {
+            "Activo",
+            "Inactivo"});
+            this.cbx_estado.Location = new System.Drawing.Point(132, 276);
+            this.cbx_estado.MaxLength = 10;
+            this.cbx_estado.Name = "cbx_estado";
+            this.cbx_estado.Size = new System.Drawing.Size(138, 21);
+            this.cbx_estado.TabIndex = 26;
+            // 
             // editarcliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::canchacubo.Properties.Resources.fondo;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cbx_estado);
             this.Controls.Add(this.cbxclientes);
             this.Controls.Add(this.btn_editar);
             this.Controls.Add(this.btn_crearcliente);
@@ -172,13 +177,13 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txt_estado);
             this.Controls.Add(this.txt_telefono);
             this.Controls.Add(this.txtt_nombre);
             this.Controls.Add(this.btn_volver);
             this.Controls.Add(this.label1);
             this.Name = "editarcliente";
             this.Text = "editarcliente";
+         //   this.Load += new System.EventHandler(this.editarcliente_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -193,10 +198,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txt_estado;
         private System.Windows.Forms.TextBox txt_telefono;
         private System.Windows.Forms.TextBox txtt_nombre;
         private System.Windows.Forms.Button btn_editar;
         private System.Windows.Forms.ComboBox cbxclientes;
+        private System.Windows.Forms.ComboBox cbx_estado;
     }
 }

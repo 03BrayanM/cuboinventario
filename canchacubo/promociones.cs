@@ -38,13 +38,6 @@ namespace canchacubo
             this.Close();
         }
 
-        private void btn_editar_Click(object sender, EventArgs e)
-        {
-            editarpromocion promo = new editarpromocion();
-            promo.Show();
-            this.Close();
-        }
-
         private void btn_eliminar_Click(object sender, EventArgs e)
         {
            

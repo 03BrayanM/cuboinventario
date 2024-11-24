@@ -9,7 +9,7 @@ namespace canchacubo.clases
 {
     internal class clsReserva
     {
-        string cadenaConexion = "Data Source = localhost; User ID = USUARIO;Password=USER654321";
+        string cadenaConexion = $"Data Source = localhost; User ID = {rol.Name};Password={rol.password}";
         int estado = 1;
         public bool Registrar_Reserva(DateTime fecha, string horaSeleccionada, string id_cliente, int num_cancha, Decimal idpromo)
         {
@@ -22,7 +22,7 @@ namespace canchacubo.clases
                     {
                         OracleCommand command = new OracleCommand();
                         command.Connection = connection;
-                        command.CommandText = "bdcanchascuboo.insertar_reserva";
+                        command.CommandText = "USUARIO.bdcanchascuboo.insertar_reserva";
                         command.CommandType = CommandType.StoredProcedure;
 
                         // Agregamos los parámetros requeridos por el procedimiento almacenado
@@ -79,6 +79,9 @@ namespace canchacubo.clases
                     case 20005:
                         MessageBox.Show("Error: formato de fecha incorrecto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
+                    case 20007:
+                        MessageBox.Show("Error: cliente inactivo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
                     default:
                         MessageBox.Show("Error al registrar la reserva: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
@@ -105,7 +108,7 @@ namespace canchacubo.clases
                 {
                     OracleCommand command = new OracleCommand();
                     command.Connection = connection;
-                    command.CommandText = "bdcanchascuboo.ELIMINAR_RESERVA"; // Nota: corregido el nombre del procedimiento
+                    command.CommandText = "USUARIO.bdcanchascuboo.ELIMINAR_RESERVA"; // Nota: corregido el nombre del procedimiento
                     command.CommandType = CommandType.StoredProcedure;
 
                     // Agregamos los parámetros requeridos por el procedimiento almacenado
@@ -214,7 +217,7 @@ namespace canchacubo.clases
             {
                 conn.Open();
 
-                using (OracleCommand cmd = new OracleCommand("bdcanchascuboo.OBTENER_RESERVAS", conn))
+                using (OracleCommand cmd = new OracleCommand("USUARIO.bdcanchascuboo.OBTENER_RESERVAS", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("p_result", OracleDbType.RefCursor).Direction = ParameterDirection.Output;

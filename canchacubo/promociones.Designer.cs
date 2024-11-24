@@ -30,7 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.btn_volverr = new System.Windows.Forms.Button();
-            this.btn_editar = new System.Windows.Forms.Button();
             this.btn_crear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -55,21 +54,10 @@
             this.btn_volverr.UseVisualStyleBackColor = true;
             this.btn_volverr.Click += new System.EventHandler(this.btn_volverr_Click);
             // 
-            // btn_editar
-            // 
-            this.btn_editar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_editar.Location = new System.Drawing.Point(89, 228);
-            this.btn_editar.Name = "btn_editar";
-            this.btn_editar.Size = new System.Drawing.Size(146, 37);
-            this.btn_editar.TabIndex = 11;
-            this.btn_editar.Text = "EDITAR";
-            this.btn_editar.UseVisualStyleBackColor = true;
-            this.btn_editar.Click += new System.EventHandler(this.btn_editar_Click);
-            // 
             // btn_crear
             // 
             this.btn_crear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_crear.Location = new System.Drawing.Point(89, 109);
+            this.btn_crear.Location = new System.Drawing.Point(196, 358);
             this.btn_crear.Name = "btn_crear";
             this.btn_crear.Size = new System.Drawing.Size(146, 37);
             this.btn_crear.TabIndex = 13;
@@ -84,7 +72,6 @@
             this.BackgroundImage = global::canchacubo.Properties.Resources.fondo;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btn_crear);
-            this.Controls.Add(this.btn_editar);
             this.Controls.Add(this.btn_volverr);
             this.Controls.Add(this.label1);
             this.Name = "promociones";
@@ -98,7 +85,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_volverr;
-        private System.Windows.Forms.Button btn_editar;
         private System.Windows.Forms.Button btn_crear;
     }
 }

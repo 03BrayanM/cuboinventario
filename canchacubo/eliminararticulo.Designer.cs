@@ -64,6 +64,7 @@
             this.label1.Size = new System.Drawing.Size(184, 25);
             this.label1.TabIndex = 21;
             this.label1.Text = "Eliminar Articulo";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // btn_eliminar
             // 

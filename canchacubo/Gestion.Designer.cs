@@ -102,17 +102,19 @@
             // 
             this.txtbuscar.Location = new System.Drawing.Point(37, 73);
             this.txtbuscar.Name = "txtbuscar";
-            this.txtbuscar.Size = new System.Drawing.Size(198, 20);
+            this.txtbuscar.Size = new System.Drawing.Size(71, 20);
             this.txtbuscar.TabIndex = 7;
             // 
             // btn_buscar
             // 
-            this.btn_buscar.Location = new System.Drawing.Point(254, 73);
+            this.btn_buscar.BackColor = System.Drawing.Color.Transparent;
+            this.btn_buscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_buscar.Location = new System.Drawing.Point(126, 73);
             this.btn_buscar.Name = "btn_buscar";
-            this.btn_buscar.Size = new System.Drawing.Size(75, 23);
+            this.btn_buscar.Size = new System.Drawing.Size(133, 23);
             this.btn_buscar.TabIndex = 8;
-            this.btn_buscar.Text = "Buscar";
-            this.btn_buscar.UseVisualStyleBackColor = true;
+            this.btn_buscar.Text = "articulo seleccionado";
+            this.btn_buscar.UseVisualStyleBackColor = false;
             // 
             // cbx_tipo
             // 

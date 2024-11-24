@@ -13,7 +13,9 @@ namespace canchacubo.clases
 {
     public class clsCliente
     {
-        string cadenaConexion = "Data Source = localhost; User ID = USUARIO;Password=USER654321";
+       // string cadenaConexion = "Data Source = localhost; User ID = USUARIO;Password=USER654321";
+       string cadenaConexion = $"Data Source = localhost; User ID = {rol.Name};Password={rol.password}";
+
         public clsCliente()
         { }
 
@@ -28,7 +30,7 @@ namespace canchacubo.clases
                     {
                         OracleCommand command = new OracleCommand();
                         command.Connection = connection;
-                        command.CommandText = "bdcanchascuboo.INSERTAR_CLIENTE";
+                        command.CommandText = "USUARIO.bdcanchascuboo.INSERTAR_CLIENTE";
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.Add("p_identificacion", OracleDbType.Decimal).Value = cedula;
@@ -95,55 +97,67 @@ namespace canchacubo.clases
         }
         public bool ConsultarCliente(string idCliente)
         {
+            string cadenaConexion2 = "Data Source = localhost; User ID = USUARIO;Password=USER654321";
+
             try
             {
-                // Validación del ID del cliente antes de la consulta
+                // Validación del ID del cliente antes de la consulta (si aplica)
                 if (!ValidarIdCliente(idCliente))
                 {
-                    return false; // Si la validación falla, detenemos la ejecución
+                    MostrarResultado("ID del cliente no válido.");
+                    return false; // Detener la ejecución si la validación falla
                 }
 
-                using (OracleConnection connection = new OracleConnection(cadenaConexion))
+                using (OracleConnection connection = new OracleConnection(cadenaConexion2))
                 {
-                    OracleCommand command = new OracleCommand();
-                    command.Connection = connection;
-                    command.CommandText = "SELECT * FROM Cliente WHERE Identificacion = :p_identificacion";
-                    command.CommandType = CommandType.Text;
-
-                    command.Parameters.Add("p_identificacion", OracleDbType.Decimal).Value = idCliente;
-
+                    // Abre la conexión
                     connection.Open();
-                    OracleDataReader reader = command.ExecuteReader();
 
-                    if (reader.HasRows)
+                    using (OracleCommand command = new OracleCommand())
                     {
-                        while (reader.Read())
-                        {
-                            string nombre = reader["Nombre"].ToString();
-                            string telefono = reader["Telefono"].ToString();
-                            string estado = reader["Estado"].ToString() == "1" ? "Activo" : "Inactivo";
+                        command.Connection = connection;
 
-                            MostrarResultado($"Cliente encontrado:\n\nNombre: {nombre}\nTeléfono: {telefono}\nEstado: {estado}");
+                        // Consulta con el esquema explícito
+                        command.CommandText = "SELECT * FROM USUARIO.Cliente WHERE Identificacion = :p_identificacion";
+                        command.CommandType = CommandType.Text;
+
+                        // Define el parámetro como texto (VARCHAR2) si Identificacion es VARCHAR2
+                        command.Parameters.Add("p_identificacion", OracleDbType.Varchar2).Value = idCliente;
+
+                        // Ejecuta el comando y lee los resultados
+                        using (OracleDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                while (reader.Read())
+                                {
+                                    string nombre = reader["Nombre"].ToString();
+                                    string telefono = reader["Telefono"].ToString();
+                                    string estado = reader["Estado"].ToString() == "1" ? "Activo" : "Inactivo";
+
+                                    MostrarResultado($"Cliente encontrado:\n\nNombre: {nombre}\nTeléfono: {telefono}\nEstado: {estado}");
+                                }
+                                return true; // Cliente encontrado
+                            }
+                            else
+                            {
+                                MostrarResultado("Cliente no encontrado. Verifica la identificación.");
+                                return false; // Cliente no encontrado
+                            }
                         }
                     }
-                    else
-                    {
-                        MostrarResultado("Cliente no encontrado. Verifica la identificación.");
-                    }
                 }
-                // Retorna true si la consulta fue exitosa y se encontraron datos
-                return true;
             }
             catch (OracleException ex)
             {
-                // Manejo de errores específicos de Oracle
-                MostrarResultado("Error al consultar el cliente: " + ex.Message);
+                // Captura errores específicos de Oracle y muestra el mensaje completo
+                MostrarResultado($"Error al consultar el cliente: {ex.Message}");
                 return false;
             }
             catch (Exception ex)
             {
-                // Manejo de cualquier otra excepción
-                MostrarResultado("Error inesperado: " + ex.Message);
+                // Captura otros errores inesperados
+                MostrarResultado($"Error inesperado: {ex.Message}");
                 return false;
             }
         }
@@ -158,7 +172,7 @@ namespace canchacubo.clases
                     {
                         OracleCommand command = new OracleCommand();
                         command.Connection = connection;
-                        command.CommandText = "bdcanchascuboo.ACTUALIZAR_CLIENTE";
+                        command.CommandText = "USUARIO.bdcanchascuboo.ACTUALIZAR_CLIENTE";
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.Add("p_identificacion", OracleDbType.Decimal).Value = idCliente;
@@ -276,7 +290,7 @@ namespace canchacubo.clases
             {
                 OracleCommand command = new OracleCommand();
                 command.Connection = connection;
-                command.CommandText = "bdcanchascuboo.OBTENER_CLIENTES";
+                command.CommandText = "USUARIO.bdcanchascuboo.OBTENER_CLIENTES";
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("p_cursor", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
                 try
@@ -291,7 +305,7 @@ namespace canchacubo.clases
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al cargar los datos: " + ex.Message);
+                    MessageBox.Show("Error al cargar los datoss: " + ex.Message);
                 }
             }
             return dtclientes;

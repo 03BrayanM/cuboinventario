@@ -17,7 +17,7 @@ namespace canchacubo
         DataTable dtinventario;
         int ProductoSeleccionado;
 
-        public event EventHandler MovimientoExitoso;
+        public event EventHandler MovimientoExitoso;         
         public Gestion()
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace canchacubo
 
         private void button1_Click(object sender, EventArgs e)
         {
-            principal inicio = new principal();
+            gestion2 inicio = new gestion2();
             inicio.Show();
             this.Close();
         }
@@ -50,11 +50,24 @@ namespace canchacubo
 
         private void button3_Click(object sender, EventArgs e)
         {
-            this.Close();
-            eliminararticulo moduloeliminar = new eliminararticulo();
-            moduloeliminar.ArticuloEliminado += RefrescarInventario;
-            moduloeliminar.Show();
+            if (ProductoSeleccionado==null)
+            {
+
+                MessageBox.Show("Debe seleccionar un artiuclo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            this.MovimientoExitoso += RefrescarInventario;
+            clsManager manager = new clsManager();
+            bool resultado = manager.Eliminarticulo(ProductoSeleccionado.ToString());
+            if (resultado)
+            {
+                // Si el registro fue exitoso, disparamos el evento ClienteRegistrado
+                MessageBox.Show("Articulo Eliminado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MovimientoExitoso?.Invoke(this, EventArgs.Empty); // Dispara el evento si no es null
+
+            }
             
+         
             }
 
         public void RefrescarInventario(object sender, EventArgs e)
@@ -68,13 +81,7 @@ namespace canchacubo
             Form_articulo.ArticuloRegistrado += RefrescarInventario;
             Form_articulo.Show();
         }
-        private void dgvinventario_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dgvinventario.SelectedRows.Count > 0)
-            {
-                ProductoSeleccionado = Convert.ToInt32(dgvinventario.SelectedRows[0].Cells["Identificador"].Value);
-            }
-        }
+       
         private void actualizar_Click(object sender, EventArgs e)
         {
             string cantidad = txt_cantidad.Text;

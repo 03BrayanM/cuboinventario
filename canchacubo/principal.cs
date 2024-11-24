@@ -1,4 +1,5 @@
-﻿using System;
+﻿using canchacubo.clases;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace canchacubo
 {
@@ -15,6 +17,17 @@ namespace canchacubo
         public principal()
         {
             InitializeComponent();
+            // Verifica uma condição qualquer
+            if (rol.Name == "ADMIN")
+            {
+                // Se a condição for verdadeira, oculta o botão
+                btn_gestion.Visible = true;
+            }
+            else
+            {
+                // Se a condição for falsa, mostra o botão
+                btn_gestion.Visible = false;
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -46,7 +59,8 @@ namespace canchacubo
 
         private void btn_gestion_Click(object sender, EventArgs e)
         {
-            Gestion gestiona = new Gestion();
+            
+            gestion2 gestiona = new gestion2();
             gestiona.Show();
             this.Hide();
         }

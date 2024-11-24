@@ -12,10 +12,11 @@ namespace canchacubo.clases
 {
     internal class clsManager
     {
-        string cadenaConexion = "Data Source = localhost; User ID = USUARIO;Password=USER654321";
 
+        string cadenaConexion = $"Data Source = localhost; User ID = {rol.Name};Password={rol.password}";
         public decimal ObtenerCostoCancha(int numeroCancha)
         {
+            string cadenaConexion = "Data Source = localhost; User ID = USUARIO;Password=USER654321";
             using (OracleConnection conn = new OracleConnection(cadenaConexion))
             {
                 conn.Open();
@@ -44,10 +45,10 @@ namespace canchacubo.clases
                     }
                 }
             }
-        }
-
+        }      
         public DataTable obtenerTablaInventario()
         {
+             string cadenaConexion = "Data Source = localhost; User ID = USUARIO;Password=USER654321";
             DataTable dtInventario = new DataTable();
 
             // Imprime la cadena de conexión para verificar
@@ -96,7 +97,7 @@ namespace canchacubo.clases
                     {
                         OracleCommand command = new OracleCommand();
                         command.Connection = connection;
-                        command.CommandText = "gestioninventario.INSERTAR_ARTICULO";
+                        command.CommandText = "USUARIO.gestioninventario.INSERTAR_ARTICULO";
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.Add("p_identificador", OracleDbType.Decimal).Value = identificador;
@@ -170,7 +171,7 @@ namespace canchacubo.clases
                     {
                         OracleCommand command = new OracleCommand();
                         command.Connection = connection;
-                        command.CommandText = "gestioninventario.ELIMINAR_ARTICULO";
+                        command.CommandText = "USUARIO.gestioninventario.ELIMINAR_ARTICULO";
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.Add("p_identificador", OracleDbType.Decimal).Value = identificador;
@@ -278,7 +279,7 @@ namespace canchacubo.clases
                     {
                         OracleCommand command = new OracleCommand();
                         command.Connection = connection;
-                        command.CommandText = "gestioninventario.InsertarMovimiento";
+                        command.CommandText = "USUARIO.gestioninventario.InsertarMovimiento";
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.Add("p_identificador", OracleDbType.Decimal).Value = identificador;
@@ -318,6 +319,56 @@ namespace canchacubo.clases
                 MessageBox.Show("Error al registrar el movimiento: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+        }
+        public DataTable obtenerTablaEmpleado(string valor)
+        {
+             string cadenaConexion = "Data Source = localhost; User ID = USUARIO;Password=USER654321";
+            string cadena;
+            DataTable dtInventario = new DataTable();
+            int horaInt = Convert.ToInt32(valor);
+            if (horaInt == 0)
+            {
+                cadena = "SELECT* FROM EMPLEADO";
+            }
+            else
+            {
+                cadena = $"SELECT idEmpleado, Nombre,idJefe, Telefono, gestioninventario.calcular_salario_anual(idEmpleado, 0) AS salarioAnual FROM Empleado WHERE gestioninventario.calcular_salario_anual(idEmpleado, 0) > '{valor}'";
+            }
+
+            // Imprime la cadena de conexión para verificar
+            Console.WriteLine("Cadena de conexión: " + cadenaConexion);
+
+            using (OracleConnection connection = new OracleConnection(cadenaConexion))
+            {
+                OracleCommand command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandText = cadena; // Nombre completo de la vista
+                command.CommandType = CommandType.Text;
+
+                try
+                {
+                    connection.Open();
+                    Console.WriteLine("Conexión abierta.");
+
+                    // Imprime la consulta para verificar
+                    Console.WriteLine("Consulta: " + command.CommandText);
+
+                    using (OracleDataAdapter adapter = new OracleDataAdapter(command))
+                    {
+                        adapter.Fill(dtInventario);
+                    }
+                }
+                catch (OracleException ex)
+                {
+                    MessageBox.Show("Error de Oracle: " + ex.Message + "\nCódigo de error: " + ex.ErrorCode);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error general: " + ex.Message);
+                }
+            }
+
+            return dtInventario;
         }
     }
 }

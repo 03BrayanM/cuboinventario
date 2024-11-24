@@ -31,7 +31,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btn_volver = new System.Windows.Forms.Button();
             this.txt_descuento = new System.Windows.Forms.TextBox();
-            this.txt_estado = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -39,6 +38,7 @@
             this.dtp_fechainicio = new System.Windows.Forms.DateTimePicker();
             this.dtp_fechafin = new System.Windows.Forms.DateTimePicker();
             this.btn_crear = new System.Windows.Forms.Button();
+            this.cbx_estado = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -69,14 +69,6 @@
             this.txt_descuento.Name = "txt_descuento";
             this.txt_descuento.Size = new System.Drawing.Size(131, 20);
             this.txt_descuento.TabIndex = 6;
-            // 
-            // txt_estado
-            // 
-            this.txt_estado.Location = new System.Drawing.Point(118, 177);
-            this.txt_estado.MaxLength = 1;
-            this.txt_estado.Name = "txt_estado";
-            this.txt_estado.Size = new System.Drawing.Size(131, 20);
-            this.txt_estado.TabIndex = 7;
             // 
             // label2
             // 
@@ -139,12 +131,25 @@
             this.btn_crear.UseVisualStyleBackColor = true;
             this.btn_crear.Click += new System.EventHandler(this.btn_crear_Click);
             // 
+            // cbx_estado
+            // 
+            this.cbx_estado.FormattingEnabled = true;
+            this.cbx_estado.Items.AddRange(new object[] {
+            "Activo",
+            "Inactivo"});
+            this.cbx_estado.Location = new System.Drawing.Point(118, 173);
+            this.cbx_estado.MaxLength = 10;
+            this.cbx_estado.Name = "cbx_estado";
+            this.cbx_estado.Size = new System.Drawing.Size(138, 21);
+            this.cbx_estado.TabIndex = 27;
+            // 
             // crearpromocion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::canchacubo.Properties.Resources.fondo;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cbx_estado);
             this.Controls.Add(this.btn_crear);
             this.Controls.Add(this.dtp_fechafin);
             this.Controls.Add(this.dtp_fechainicio);
@@ -152,7 +157,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txt_estado);
             this.Controls.Add(this.txt_descuento);
             this.Controls.Add(this.btn_volver);
             this.Controls.Add(this.label1);
@@ -168,7 +172,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_volver;
         private System.Windows.Forms.TextBox txt_descuento;
-        private System.Windows.Forms.TextBox txt_estado;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -176,5 +179,6 @@
         private System.Windows.Forms.DateTimePicker dtp_fechainicio;
         private System.Windows.Forms.DateTimePicker dtp_fechafin;
         private System.Windows.Forms.Button btn_crear;
+        private System.Windows.Forms.ComboBox cbx_estado;
     }
 }

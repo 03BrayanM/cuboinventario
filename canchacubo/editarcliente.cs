@@ -25,9 +25,9 @@ namespace canchacubo
             CargarClientesEnComboBox();
             txtt_nombre.Enabled = false;
             txt_telefono.Enabled = false;           
-            txt_estado.Enabled = false;
+            cbx_estado.Enabled = false;
             btn_crearcliente.Enabled = false;
-
+            cbx_estado.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void btn_volver_Click(object sender, EventArgs e)
@@ -41,13 +41,22 @@ namespace canchacubo
 
             String nombre = txtt_nombre.Text;
             string telefono = txt_telefono.Text;            
-            String estado = txt_estado.Text;
+            String estado;
             if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(telefono) ||
-        string.IsNullOrEmpty(identificacion) || string.IsNullOrEmpty(estado))
+             string.IsNullOrEmpty(identificacion) )
             {
                 // Mostrar mensaje de error si algún campo está vacío
                 MessageBox.Show("Debe diligenciar todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // Salir del método sin continuar
+            }
+            if (cbx_estado.SelectedIndex == -1)
+            {
+                MessageBox.Show("Por favor, seleccione una opción para el estado.", "Error de selección", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                 estado = obtenerestado();
             }
             clsCliente cliente_obj = new clsCliente();
             cliente_obj.EditarCliente(identificacion, nombre, telefono, estado);
@@ -58,14 +67,14 @@ namespace canchacubo
         {
             if (cbxclientes.SelectedIndex == -1)
             {
-                MessageBox.Show("Por favor, seleccione una opción para la hora.", "Error de selección", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Por favor, seleccione una opción para los clientes.", "Error de selección", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             Boolean resultado = cliente_obj.ConsultarCliente(identificacion);
             if (resultado) {
                 txtt_nombre.Enabled = true;
                 txt_telefono.Enabled = true;
-                txt_estado.Enabled = true;
+                cbx_estado.Enabled = true;
                 btn_crearcliente.Enabled = true;
 
             }
@@ -86,8 +95,6 @@ namespace canchacubo
         }
         private void CargarClientesEnComboBox()
         {
-            cbxclientes.Items.Clear();
-            
             RecargarDatosClientes();  // Cargar los datos en dtpromociones
 
             // Verificar si la columna "InformacionPromo" ya existe para evitar errores
@@ -122,5 +129,16 @@ namespace canchacubo
             }
 
         }
+        private String obtenerestado()
+        {
+             string estado = cbx_estado.SelectedItem.ToString(); ;//obtener estado
+                if (estado == "Activo")
+                {
+                    return "1";
+                }else return "0";
+           
+        }
+
+       
     }
 }

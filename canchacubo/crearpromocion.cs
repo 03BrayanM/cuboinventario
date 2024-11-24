@@ -28,14 +28,23 @@ namespace canchacubo
         private void btn_crear_Click(object sender, EventArgs e)
         {
             String descuento = txt_descuento.Text;           
-            String estado = txt_estado.Text;
+            String estado ;
             DateTime fechainicio = obtenerFechaideal();
             DateTime fechafin = dtp_fechafin.Value.Date;
-            if (string.IsNullOrEmpty(descuento) || string.IsNullOrEmpty(estado)|| dtp_fechainicio.Checked == false)           
+            if (string.IsNullOrEmpty(descuento)|| dtp_fechainicio.Checked == false)           
             {
 
                 MessageBox.Show("Debe diligenciar todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+            }
+            if (cbx_estado.SelectedIndex == -1)
+            {
+                MessageBox.Show("Por favor, seleccione una opción para el estado.", "Error de selección", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                estado = obtenerestado();
             }
             clsPromocion obj_prom = new clsPromocion();
             obj_prom.RegistrarPromocion(fechainicio, fechafin, estado, descuento);
@@ -48,6 +57,16 @@ namespace canchacubo
                 fechaSeleccionada = DateTime.Now.Date;
             }
             return fechaSeleccionada;
+        }
+        private String obtenerestado()
+        {
+            string estado = cbx_estado.SelectedItem.ToString(); ;//obtener estado
+            if (estado == "Activo")
+            {
+                return "1";
+            }
+            else return "0";
+
         }
     }
 }

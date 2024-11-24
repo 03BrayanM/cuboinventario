@@ -13,7 +13,7 @@ namespace canchacubo.clases
 {
     internal class clsPromocion
     {
-        string cadenaConexion = "Data Source = localhost; User ID = USUARIO;Password=USER654321";
+        string cadenaConexion = $"Data Source = localhost; User ID = {rol.Name};Password={rol.password}";
         int estado = 1;
 
         public void RegistrarPromocion(DateTime fechainicio, DateTime fechafin, string estado, string descuento)
@@ -116,7 +116,7 @@ namespace canchacubo.clases
             {
                 conn.Open();
 
-                using (OracleCommand cmd = new OracleCommand("bdcanchascuboo.OBTENERPROMOCIONES", conn))
+                using (OracleCommand cmd = new OracleCommand("USUARIO.bdcanchascuboo.OBTENERPROMOCIONES", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("p_result", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
