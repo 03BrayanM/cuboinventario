@@ -31,16 +31,5 @@ namespace canchacubo
             this.Close();
         }
 
-        private void btn_consultar_Click(object sender, EventArgs e)
-        {
-            consultarpromocion promo = new consultarpromocion();
-            promo.Show();
-            this.Close();
-        }
-
-        private void btn_eliminar_Click(object sender, EventArgs e)
-        {
-           
-        }
     }
 }

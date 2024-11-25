@@ -13,6 +13,7 @@ namespace canchacubo.clases
         int estado = 1;
         public bool Registrar_Reserva(DateTime fecha, string horaSeleccionada, string id_cliente, int num_cancha, Decimal idpromo)
         {
+            string cadenaConexion2 = "Data Source = localhost; User ID = USUARIO;Password=USER654321";
             try
             {
                 if (validar_reserva(fecha, horaSeleccionada, id_cliente, num_cancha, idpromo))
@@ -22,7 +23,7 @@ namespace canchacubo.clases
                     {
                         OracleCommand command = new OracleCommand();
                         command.Connection = connection;
-                        command.CommandText = "USUARIO.bdcanchascuboo.insertar_reserva";
+                        command.CommandText = "bdcanchascuboo.insertar_reserva";
                         command.CommandType = CommandType.StoredProcedure;
 
                         // Agregamos los parámetros requeridos por el procedimiento almacenado
@@ -81,6 +82,9 @@ namespace canchacubo.clases
                         break;
                     case 20007:
                         MessageBox.Show("Error: cliente inactivo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    case 20008:
+                        MessageBox.Show("Error:Cliente inexistente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                     default:
                         MessageBox.Show("Error al registrar la reserva: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
