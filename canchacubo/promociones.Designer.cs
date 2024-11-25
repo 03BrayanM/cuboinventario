@@ -57,7 +57,7 @@
             // btn_crear
             // 
             this.btn_crear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_crear.Location = new System.Drawing.Point(196, 358);
+            this.btn_crear.Location = new System.Drawing.Point(340, 179);
             this.btn_crear.Name = "btn_crear";
             this.btn_crear.Size = new System.Drawing.Size(146, 37);
             this.btn_crear.TabIndex = 13;

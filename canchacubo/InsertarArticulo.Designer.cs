@@ -49,7 +49,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(179, 25);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Insertar Articulo";
+            this.label1.Text = "Insertar Artículo";
             // 
             // btn_articulo
             // 
@@ -72,7 +72,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(92, 20);
             this.label5.TabIndex = 23;
-            this.label5.Text = "Descripcion";
+            this.label5.Text = "Descripción";
             // 
             // label4
             // 

@@ -38,7 +38,7 @@
             // btn_cliente
             // 
             this.btn_cliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_cliente.Location = new System.Drawing.Point(66, 341);
+            this.btn_cliente.Location = new System.Drawing.Point(171, 216);
             this.btn_cliente.Name = "btn_cliente";
             this.btn_cliente.Size = new System.Drawing.Size(108, 45);
             this.btn_cliente.TabIndex = 1;
@@ -49,7 +49,7 @@
             // btn_promociones
             // 
             this.btn_promociones.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_promociones.Location = new System.Drawing.Point(230, 341);
+            this.btn_promociones.Location = new System.Drawing.Point(367, 216);
             this.btn_promociones.Name = "btn_promociones";
             this.btn_promociones.Size = new System.Drawing.Size(108, 45);
             this.btn_promociones.TabIndex = 4;
@@ -70,7 +70,7 @@
             // btn_reserva
             // 
             this.btn_reserva.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_reserva.Location = new System.Drawing.Point(389, 341);
+            this.btn_reserva.Location = new System.Drawing.Point(573, 216);
             this.btn_reserva.Name = "btn_reserva";
             this.btn_reserva.Size = new System.Drawing.Size(105, 42);
             this.btn_reserva.TabIndex = 7;
@@ -81,11 +81,11 @@
             // btn_gestion
             // 
             this.btn_gestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_gestion.Location = new System.Drawing.Point(568, 341);
+            this.btn_gestion.Location = new System.Drawing.Point(358, 365);
             this.btn_gestion.Name = "btn_gestion";
             this.btn_gestion.Size = new System.Drawing.Size(105, 42);
             this.btn_gestion.TabIndex = 8;
-            this.btn_gestion.Text = "GESTION";
+            this.btn_gestion.Text = "GESTIÓN";
             this.btn_gestion.UseVisualStyleBackColor = true;
             this.btn_gestion.Click += new System.EventHandler(this.btn_gestion_Click);
             // 

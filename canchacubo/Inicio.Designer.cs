@@ -90,9 +90,10 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(305, 56);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(203, 29);
+            this.label3.Size = new System.Drawing.Size(209, 29);
             this.label3.TabIndex = 5;
-            this.label3.Text = "INCIAR SECION";
+            this.label3.Text = "INICIAR SESIÓN";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // btn_salir
             // 

@@ -92,7 +92,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 20);
             this.label4.TabIndex = 21;
-            this.label4.Text = "Telefono";
+            this.label4.Text = "Teléfono";
             // 
             // label3
             // 
@@ -112,7 +112,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 20);
             this.label2.TabIndex = 19;
-            this.label2.Text = "Identificacion";
+            this.label2.Text = "Identificación";
             // 
             // txt_telefono
             // 
@@ -183,7 +183,6 @@
             this.Controls.Add(this.label1);
             this.Name = "editarcliente";
             this.Text = "editarcliente";
-         //   this.Load += new System.EventHandler(this.editarcliente_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

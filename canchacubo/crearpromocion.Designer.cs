@@ -47,9 +47,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(324, 42);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(184, 25);
+            this.label1.Size = new System.Drawing.Size(188, 25);
             this.label1.TabIndex = 1;
-            this.label1.Text = "crear Promocion";
+            this.label1.Text = "Crear Promoción";
             // 
             // btn_volver
             // 

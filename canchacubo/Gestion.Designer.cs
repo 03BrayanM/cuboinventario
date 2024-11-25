@@ -64,7 +64,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(144, 31);
             this.label1.TabIndex = 2;
-            this.label1.Text = "GESTION";
+            this.label1.Text = "GESTIÓN";
             // 
             // btn_insertar
             // 
@@ -73,7 +73,7 @@
             this.btn_insertar.Name = "btn_insertar";
             this.btn_insertar.Size = new System.Drawing.Size(205, 36);
             this.btn_insertar.TabIndex = 4;
-            this.btn_insertar.Text = "INSERTAR ARTICULO";
+            this.btn_insertar.Text = "INSERTAR ARTÍCULO";
             this.btn_insertar.UseVisualStyleBackColor = true;
             this.btn_insertar.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -84,7 +84,7 @@
             this.btn_eliminar.Name = "btn_eliminar";
             this.btn_eliminar.Size = new System.Drawing.Size(205, 36);
             this.btn_eliminar.TabIndex = 5;
-            this.btn_eliminar.Text = "ELIMINAR ARTICULO";
+            this.btn_eliminar.Text = "ELIMINAR ARTÍCULO";
             this.btn_eliminar.UseVisualStyleBackColor = true;
             this.btn_eliminar.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -113,7 +113,7 @@
             this.btn_buscar.Name = "btn_buscar";
             this.btn_buscar.Size = new System.Drawing.Size(133, 23);
             this.btn_buscar.TabIndex = 8;
-            this.btn_buscar.Text = "articulo seleccionado";
+            this.btn_buscar.Text = "Artículo seleccionado";
             this.btn_buscar.UseVisualStyleBackColor = false;
             // 
             // cbx_tipo
